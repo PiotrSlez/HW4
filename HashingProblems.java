@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** Piotr Slezak / Section 1 ***
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -33,15 +33,16 @@ class HashingProblems {
 
     public double getAverage(HashMap<Integer, Integer> map, int[] array) {
 
-        /*
-         * ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOU NAME AT TOP OF FILE
-         *
-         * Note: if NO values found in common between the HashMap and supplied array,
-         * returning 0.0 is NOT correct, as that is not the average value. Whereas
-         * returning 0.0/0.0 IS correct (which would return a non-number).
-         */
+        double count = 0.0, sum = 0.0;
 
-         return 0.0 / 0.0;
+        for(int i = 0; i < array.length; i++){ //traverses int array
+
+            if(map.containsKey(array[i])){ //checks if map contains key
+                count++; //increments count
+                sum += map.get(array[i]); //adds key's value to sum
+            }
+        }
+         return sum / count; //calculates average
   }
 
 
@@ -55,13 +56,12 @@ class HashingProblems {
   public ArrayList<String> odd(HashMap<Integer, String> map) {
     
       ArrayList<String> result = new ArrayList<>();
-
-      /*
-       * ADD YOUR CODE HERE
-       *
-       * Hint: Consider iterating over the HashMap using the keySet method.
-       */
-
+      Set<Integer> keys = map.keySet(); //creates keySet for map
+      for(Integer i : keys){ //iterates through the keySet
+          if(i % 2 == 1){ //checks if odd
+              result.add(map.get(i)); //adds value to result array
+          }
+      }
 
       return result;
   }
@@ -105,12 +105,20 @@ class HashingProblems {
    */
 
   public int twoSums(int[] numbers, int k) {
+    HashMap<Integer, Integer> hashMap = new HashMap<>();
+    int kCount = 0;
 
-      /*
-       * ADD YOUR CODE HERE
-       */
+    for(int i : numbers){ //time complexity O(n)
+        hashMap.put(i + k, i); //i + k == larger number in K's equation
+    }
 
-      return -1;
+    for(int i : numbers){ //also time complexity O(n)
+        if(hashMap.containsKey(i)){ //checks if i + k is in the numbers array
+            kCount++;
+        }
+    }
+
+      return kCount; //time complexity 2n or O(n)
   }
 
 } /* end class HashingProblems */
